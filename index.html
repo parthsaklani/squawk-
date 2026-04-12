@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squawk | Live Flight Tracker</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme" id="app-body">
+    <header class="navbar">
+        <div class="logo-area">
+            <h1 class="logo">Squawk</h1>
+            <p class="subtitle">Live API Data</p>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search callsign or country..." autocomplete="off">
+        </div>
+        
+        <button id="theme-toggle" class="btn">Theme Toggle</button>
+    </header>
+
+    <main class="layout">
+        <div id="map" class="map-container">
+            <div id="loading" class="loading-state">Fetching & Charting Live Radar Data...</div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="controls-panel">
+                <h3>Filters & Sorting</h3>
+                
+                <div class="filter-group">
+                    <label>Country:</label>
+                    <select id="filter-country">
+                        <option value="all">All Countries</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Altitude:</label>
+                    <select id="filter-altitude">
+                        <option value="all">All Altitudes</option>
+                        <option value="low">Low (&lt; 3000m)</option>
+                        <option value="high">High (> 3000m)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group checkbox">
+                    <input type="checkbox" id="filter-airborne">
+                    <label for="filter-airborne">Airborne Only</label>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Sort Metrics:</label>
+                    <select id="sort-by">
+                        <option value="velocity">Speed</option>
+                        <option value="baro_altitude">Altitude</option>
+                        <option value="callsign">Callsign</option>
+                    </select>
+                </div>
+                
+                <div class="radio-row">
+                    <label><input type="radio" name="sort-order" value="asc"> Asc</label>
+                    <label><input type="radio" name="sort-order" value="desc" checked> Desc</label>
+                </div>
+            </div>
+
+            <div class="flight-list" id="flight-list">
+            </div>
+            
+            <div class="pagination">
+                <button id="btn-prev" class="btn btn-sm">Prev</button>
+                <div id="page-info">Page 1</div>
+                <button id="btn-next" class="btn btn-sm">Next</button>
+            </div>
+        </aside>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script src="js/storage.js"></script>
+    <script src="js/filters.js"></script>
+    
+    <script src="js/api.js"></script> 
+    <script src="js/map.js"></script>
+    
+    <script src="js/ui.js"></script>
+</body>
+</html>
